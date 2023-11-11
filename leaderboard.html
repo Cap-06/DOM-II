@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <style>
+  .parent{
+   display: flex;
+   justify-content: space-evenly;
+  }
+  #grand_parent{
+   width: 30%;
+   height: 800px;
+   border: 5px solid rgb(159, 68, 251);
+   border-radius: 10px;
+   margin: auto;
+  }
+  .parent > div > input{
+   width: 100px;
+   height: 100px;
+   margin-top: 20px;
+  }
+  .score{
+   text-align: center;
+  }
+  .score > input{
+   width: 60%;
+   height: 30px;
+  }
+  #num{
+   width: 10%;
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap: 15px;
+  padding-left: 30px;
+   margin-top: 15px;
+  }
+  #num > button{
+   width: 70px;
+   height: 70px;
+   margin-right: 20px;
+  }
+  #submit > button{
+    box-shadow: 3px 4px rgb(11, 11, 11);
+   text-shadow: 2px 1px rgb(9, 9, 9);
+   width: 50%;
+   height: 70px;
+   display: block;
+   margin: auto;
+   margin-top:20px;
+   background-color: black;
+   color: aliceblue;
+  }
+  .mini{
+    box-shadow: 3px 5px rgb(228, 95, 95);
+    font-size: 30px;
+    background-color:rgb(232, 210, 210);
+  }
+  .big{
+    box-shadow: 3px 5px rgb(237, 111, 111);
+    font-size: 30px; 
+    background-color:rgb(219, 190, 190);
+  }
+  .zero{
+    box-shadow: 3px 5px rgb(210, 126, 126);
+    font-size: 30px;
+    background-color:rgb(205, 179, 179);
+  }
+  input{
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+  }
+ </style>
+</head>
+<body>
+    <div id="grand_parent">
+        <div class="parent">
+         <div>
+          <input style="background-color: rgb(255, 234, 0);"type="number" value=35 id="min">
+          <h1>MIN</h1>
+         </div>
+         <div>
+          <input style="background-color: rgb(0, 128, 111);"type="number" value=300 id="max">
+          <h1>MAX</h1>
+         </div>
+        </div>
+        <div class="score">
+         <h1>SCORE</h1>
+         <input type="number" id="result">
+        </div>
+        <div id="num">
+         <button class="mini">1</button>
+         <button class="big">2</button>
+         <button class="mini">3</button>
+         <button class="big">4</button>
+         <button class="big">5</button>
+         <button class="big">6</button>
+         <button class="mini">7</button>
+         <button class="big">8</button>
+         <button class="mini">9</button>
+         <button class="zero">0</button>
+        </div>
+        <div id="submit">
+          <button id="btn">ENTER</button>
+        </div>
+       </div>
+  </body>
+  </html>
+  <script>
+ let min = document.getElementById("min");
+  let max = document.getElementById("max");
+  let res = document.getElementById("result");
+  let key = document.querySelectorAll("#num > button");
+  let score = 0; // Define the score variable
+
+  for(let i = 0; i < key.length; i++){
+    key[i].addEventListener("click",function(){
+      res.value += key[i].innerText;
+    });
+  }
+
+  document.getElementById("btn").addEventListener("click", function(){
+    score = Number(res.value); // Update the score value
+    if(score < Number(min.value)){
+      min.value = score;
+    }
+    if(score > Number(max.value)) {
+      max.value = score;
+    }
+    res.value = ""; // Reset the input value
+});
+</script>  
